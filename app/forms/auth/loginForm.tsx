@@ -1,6 +1,6 @@
 import InnerloginForm from "@/app/components/auth/innerLoginForm";
 import { LoginFormValuesInterface } from "@/app/components/contracts";
-import {  withFormik } from "formik";
+import { withFormik } from "formik";
 import * as yup from "yup";
 
 interface LoginFormProps {}
