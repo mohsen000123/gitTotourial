@@ -1,23 +1,24 @@
-const { default: axios } = require("axios");
+import axios from "axios";
+
 
 const callApi = () => {
   const axiosInstance = axios.create({
-    baseUrl: "http://localhost:5000/api",
+    baseURL: "http://localhost:5000/api",
   });
 
   // this is send request cookies users
-  axiosInstance.interceptors.reequest.use(
-    (config : string) => {
+  axiosInstance.interceptors.request.use(
+    (config) => {
       return config;
     },
-    (err : string) => Promise.reject(err)
+    (err) => Promise.reject(err)
   );
   axiosInstance.interceptors.response.use(
-    (res : string) => {
+    (res) => {
       //manage validation
       return res;
     },
-    (err : string) => Promise.reject(err)
+    (err) => Promise.reject(err)
   );
   return axiosInstance;
 };
