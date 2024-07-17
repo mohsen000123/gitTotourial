@@ -1,7 +1,10 @@
 import { NextPage } from "next";
+
 import LoginForm from "../../app/forms/auth/loginForm";
+import { useCookies } from "react-cookie";
 
 const login: NextPage = () => {
+  const [cookies, setCookie] = useCookies(["shopy-token"]);
   return (
     <>
       <section className="h-screen">
@@ -18,7 +21,7 @@ const login: NextPage = () => {
 
             {/* <!-- Right column container with form --> */}
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
-              <LoginForm />
+              <LoginForm setCookie={setCookie} />
             </div>
           </div>
         </div>
