@@ -5,6 +5,7 @@ import callApi from "@/app/helpers/callApi";
 import { withFormik } from "formik";
 import * as yup from "yup";
 import Router from "next/router";
+import ValidationError from "@/app/exceptions/validationError";
 
 interface LoginFormProps {
   setCookie: any;
@@ -21,7 +22,7 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
     };
   },
   validationSchema: loginFormValidationSchema,
-  handleSubmit: async (values, { props }) => {
+  handleSubmit: async (values, { props, setFieldError }) => {
     try {
       const res = await callApi().post("/auth/login", values);
       if (res.status === 200) {
@@ -33,7 +34,11 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
         });
       }
     } catch (err) {
-      console.log(err);
+      if (err instanceof ValidationError) {
+        Object.entries(err.messages).forEach(([key, value]) =>
+          setFieldError(key, value as string)
+        );
+      }
     }
   },
 })(InnerloginForm);
