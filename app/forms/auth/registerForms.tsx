@@ -1,5 +1,6 @@
 import InnerRegisterForm from "@/app/components/auth/innerRegisterForm";
 import { RegisterFormValuesInterface } from "@/app/components/contracts";
+import ValidationError from "@/app/exceptions/validationError";
 import callApi from "@/app/helpers/callApi";
 
 import { withFormik } from "formik";
@@ -26,13 +27,18 @@ const RegisterForm = withFormik<RegisterFormProps, RegisterFormValuesInterface>(
       };
     },
     validationSchema: registerFormValidationSchema,
-    handleSubmit: async (values) => {
+    handleSubmit: async (values, { setFieldError }) => {
       try {
         const res = await callApi().post("/auth/register", values);
         if (res.status === 201) {
           Router.push("/auth/login");
         }
       } catch (err) {
+        if (err instanceof ValidationError) {
+          Object.entries(err.messages).forEach(([key, value]) =>
+            setFieldError(key, value as string)
+          );
+        }
         console.log(err);
       }
     },

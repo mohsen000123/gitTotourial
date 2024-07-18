@@ -1,14 +1,19 @@
 import { Form, FormikProps } from "formik";
 
 import Input from "../shared/form/input";
-import { LoginFormValuesInterface } from "../contracts";
+import {
+  LoginFormValuesInterface,
+  PhoenVerifyFormValuesInterface,
+} from "../contracts";
 
-const InnerloginForm = (props: FormikProps<LoginFormValuesInterface>) => {
+const innerPhoneVerify = (
+  props: FormikProps<PhoenVerifyFormValuesInterface>
+) => {
   return (
     <Form>
-      {/* <!-- Email input --> */}
+      {/* <!-- code input --> */}
       <div className="relative mb-6" data-twe-input-wrapper-init>
-        <Input name="phone" lable="Phone Number" />
+        <Input name="code" lable="code Number" />
       </div>
 
       {/* <!-- Submit button --> */}
@@ -18,9 +23,9 @@ const InnerloginForm = (props: FormikProps<LoginFormValuesInterface>) => {
         data-twe-ripple-init
         data-twe-ripple-color="light"
       >
-        Log in
+        Verify
       </button>
     </Form>
   );
 };
-export default InnerloginForm;
+export default innerPhoneVerify;

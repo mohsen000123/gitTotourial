@@ -7,18 +7,22 @@ import * as yup from "yup";
 import Router from "next/router";
 import ValidationError from "@/app/exceptions/validationError";
 
+const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+
 interface LoginFormProps {
   setCookie: any;
 }
 const loginFormValidationSchema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(8),
+  phone: yup
+    .string()
+    .required()
+    .min(8)
+    .matches(phoneRegExp, "the phone format is not correct"),
 });
 const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
   mapPropsToValues: (props) => {
     return {
-      email: "",
-      password: "",
+      phone: "",
     };
   },
   validationSchema: loginFormValidationSchema,
@@ -26,12 +30,8 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
     try {
       const res = await callApi().post("/auth/login", values);
       if (res.status === 200) {
-        props.setCookie("shopy-token", res.data.token, {
-          maxAge: 3600 * 24 * 30,
-          domain: "localhost",
-          path: "/",
-          sameSite: "lax",
-        });
+        localStorage.setItem("phone-verify-token", res.data.token);
+        Router.push("/auth/login/step-two");
       }
     } catch (err) {
       if (err instanceof ValidationError) {

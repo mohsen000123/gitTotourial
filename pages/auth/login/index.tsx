@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import LoginForm from "../../app/forms/auth/loginForm";
+import LoginForm from "../../../app/forms/auth/loginForm";
 import { useCookies } from "react-cookie";
 
 const login: NextPage = () => {
