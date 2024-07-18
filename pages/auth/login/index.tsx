@@ -2,9 +2,14 @@ import { NextPage } from "next";
 
 import LoginForm from "../../../app/forms/auth/loginForm";
 import { useCookies } from "react-cookie";
+import { useAppDispatch } from "@/app/hooks";
+import { UpdatePhoneVerifyToken } from "@/app/store/auth";
 
 const login: NextPage = () => {
-  const [cookies, setCookie] = useCookies(["shopy-token"]);
+  const displatch = useAppDispatch();
+  const setPhoneVerifyToken = (token: string) => {
+    displatch(UpdatePhoneVerifyToken(token));
+  };
   return (
     <>
       <section className="h-screen">
@@ -21,7 +26,7 @@ const login: NextPage = () => {
 
             {/* <!-- Right column container with form --> */}
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
-              <LoginForm setCookie={setCookie} />
+              <LoginForm setToken={setPhoneVerifyToken} />
             </div>
           </div>
         </div>

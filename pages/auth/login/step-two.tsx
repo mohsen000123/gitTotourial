@@ -1,7 +1,32 @@
 import { NextPage } from "next";
-import PhoneVerifyForm from "../../../app/forms/auth/phoneVerifyForm";
+import { useEffect } from "react";
+import Router from "next/router";
 
-const login: NextPage = () => {
+import PhoneVerifyForm from "../../../app/forms/auth/phoneVerifyForm";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import {
+  selectPhoneVerifyToken,
+  UpdatePhoneVerifyToken,
+} from "@/app/store/auth";
+
+const PhoneVerify: NextPage = () => {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(selectPhoneVerifyToken);
+
+  const clearPhoneVerifyToken = () => {
+    dispatch(UpdatePhoneVerifyToken(undefined));
+  };
+
+  useEffect(() => {
+    Router.beforePopState(({ url, as, options }) => {
+      clearPhoneVerifyToken();
+      return true;
+    });
+    if (token === undefined) {
+      Router.push("/auth/login");
+    }
+  }, [token]);
+
   return (
     <>
       <section className="h-screen">
@@ -18,7 +43,10 @@ const login: NextPage = () => {
 
             {/* <!-- Right column container with form --> */}
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
-              <PhoneVerifyForm />
+              <PhoneVerifyForm
+                token={token}
+                clearToken={clearPhoneVerifyToken}
+              />
             </div>
           </div>
         </div>
@@ -26,4 +54,4 @@ const login: NextPage = () => {
     </>
   );
 };
-export default login;
+export default PhoneVerify;

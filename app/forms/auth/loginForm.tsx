@@ -10,7 +10,7 @@ import ValidationError from "@/app/exceptions/validationError";
 const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
 
 interface LoginFormProps {
-  setCookie: any;
+  setToken: (token: string) => void;
 }
 const loginFormValidationSchema = yup.object().shape({
   phone: yup
@@ -30,7 +30,9 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
     try {
       const res = await callApi().post("/auth/login", values);
       if (res.status === 200) {
-        localStorage.setItem("phone-verify-token", res.data.token);
+        props.setToken(res.data.token);
+        console.log(res);
+        
         Router.push("/auth/login/step-two");
       }
     } catch (err) {
