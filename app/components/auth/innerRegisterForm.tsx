@@ -12,12 +12,7 @@ const InnerRegisterForm = (props: FormikProps<RegisterFormValuesInterface>) => {
       </div>
       {/* <!-- Email input --> */}
       <div className="relative mb-6" data-twe-input-wrapper-init>
-        <Input name="email" type="email" lable="Email Address" />
-      </div>
-
-      {/* <!-- Password input --> */}
-      <div className="relative mb-6" data-twe-input-wrapper-init>
-        <Input name="password" type="password" lable="Password" />
+        <Input name="phone" lable="Phone Number" />
       </div>
       {/* <!-- Submit button --> */}
       <button
