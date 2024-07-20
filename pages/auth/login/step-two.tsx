@@ -8,8 +8,10 @@ import {
   selectPhoneVerifyToken,
   UpdatePhoneVerifyToken,
 } from "@/app/store/auth";
+import { NextPageWithLayout } from "@/pages/_app";
+import GuestLayout from "@/app/components/guestPanelLayout";
 
-const PhoneVerify: NextPage = () => {
+const PhoneVerify: NextPageWithLayout = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectPhoneVerifyToken);
 
@@ -54,4 +56,7 @@ const PhoneVerify: NextPage = () => {
     </>
   );
 };
+
+PhoneVerify.getLayout = (page) => <GuestLayout>{page}</GuestLayout>;
+
 export default PhoneVerify;

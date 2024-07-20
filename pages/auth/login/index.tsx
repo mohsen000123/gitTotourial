@@ -4,8 +4,12 @@ import LoginForm from "../../../app/forms/auth/loginForm";
 import { useCookies } from "react-cookie";
 import { useAppDispatch } from "@/app/hooks";
 import { UpdatePhoneVerifyToken } from "@/app/store/auth";
+import { NextPageWithLayout } from "@/pages/_app";
+import guestLayout from "@/app/components/guestPanelLayout";
+import GuestLayout from "@/app/components/guestPanelLayout";
+import { pages } from "next/dist/build/templates/app-page";
 
-const login: NextPage = () => {
+const login: NextPageWithLayout = () => {
   const displatch = useAppDispatch();
   const setPhoneVerifyToken = (token: string) => {
     displatch(UpdatePhoneVerifyToken(token));
@@ -34,4 +38,6 @@ const login: NextPage = () => {
     </>
   );
 };
+login.getLayout = (page) => <GuestLayout>{page}</GuestLayout>;
+
 export default login;

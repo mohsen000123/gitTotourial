@@ -13,7 +13,6 @@ const useAuth = () =>{
             }
         })
     })
-    console.log(data , error);
     return { user : data?.data?.user , error , loading : !data && !error }
 }
 

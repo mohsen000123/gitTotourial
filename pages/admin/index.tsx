@@ -1,4 +1,4 @@
-import AdminPanelLayout from "@/app/components/admin/adminPanelLayout";
+import AdminPanelLayout from "@/app/components/adminPanelLayout";
 
 import { NextPageWithLayout } from "../_app";
 import { useEffect, useState } from "react";
