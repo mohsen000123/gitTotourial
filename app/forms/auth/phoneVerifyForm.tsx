@@ -38,7 +38,7 @@ const PhoneVerifyForm = withFormik<
       const res = await callApi().post("/auth/login/verify-phone", values);
       if (res.status === 200) {
         storeLoginToken(res.data?.user?.token);
-        // await Router.push("/");
+        await Router.push("/panel");
         props.clearToken();
       }
     } catch (err) {
