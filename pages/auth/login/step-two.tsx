@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { useEffect } from "react";
 import Router from "next/router";
 
@@ -9,7 +8,6 @@ import {
   UpdatePhoneVerifyToken,
 } from "@/app/store/auth";
 import { NextPageWithLayout } from "@/pages/_app";
-import GuestLayout from "@/app/components/guestPanelLayout";
 
 const PhoneVerify: NextPageWithLayout = () => {
   const dispatch = useAppDispatch();
@@ -57,6 +55,5 @@ const PhoneVerify: NextPageWithLayout = () => {
   );
 };
 
-PhoneVerify.getLayout = (page) => <GuestLayout>{page}</GuestLayout>;
 
 export default PhoneVerify;

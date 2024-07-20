@@ -1,5 +1,4 @@
 import {
-  LoginFormValuesInterface,
   PhoenVerifyFormValuesInterface,
 } from "@/app/components/contracts";
 import callApi from "@/app/helpers/callApi";

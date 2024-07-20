@@ -1,4 +1,4 @@
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 import useAuth from "../hooks/useAuth";
 import { useRouter } from "next/router";
 
@@ -19,7 +19,6 @@ const UserPanelLayout = ({ children }: Props) => {
     router.push("/auth/login");
     return <></>;
   }
-  console.log(user);
 
   return <div className="w-full text-2xl">{children}</div>;
 };

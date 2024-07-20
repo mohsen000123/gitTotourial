@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import Cookies from "universal-cookie";
-import callApi from "../helpers/callApi";
+ 
+import callApi from "../helpers/callApi"; 
 
 
 const useAuth = () =>{
@@ -13,6 +14,7 @@ const useAuth = () =>{
             }
         })
     })
+    
     return { user : data?.data?.user , error , loading : !data && !error }
 }
 
