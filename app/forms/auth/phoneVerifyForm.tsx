@@ -9,6 +9,7 @@ import innerPhoneVerify from "@/app/components/auth/innerPhoneVerifyForm";
 import { withFormik } from "formik";
 import * as yup from "yup";
 import Router from "next/router";
+import { storeLoginToken } from "@/app/helpers/auth";
 
 interface PhoneVerifyProps {
   token?: string;
@@ -36,7 +37,8 @@ const PhoneVerifyForm = withFormik<
     try {
       const res = await callApi().post("/auth/login/verify-phone", values);
       if (res.status === 200) {
-        await Router.push("/");
+        storeLoginToken(res.data?.user?.token);
+        // await Router.push("/");
         props.clearToken();
       }
     } catch (err) {
