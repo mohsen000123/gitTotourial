@@ -8,11 +8,7 @@ const useAuth = () =>{
     const cookie = new Cookies();
 
     const { data , error } = useSWR('user_me' , () => {
-        return callApi().get('/user' , {
-            headers :{
-                Authorization:cookie.get('shopy_token')
-            }
-        })
+        return callApi().get('/user')
     })
     
     return { user : data?.data?.user , error , loading : !data && !error }

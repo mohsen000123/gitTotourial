@@ -10,6 +10,8 @@ const callApi = () => {
   // this is send request cookies users
   axiosInstance.interceptors.request.use(
     (config) => {
+      // send all cookies for api 
+      config.withCredentials = true
       return config;
     },
     (err) => { throw err }

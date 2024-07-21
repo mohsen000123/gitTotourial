@@ -31,8 +31,6 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
       const res = await callApi().post("/auth/login", values);
       if (res.status === 200) {
         props.setToken(res.data.token);
-        console.log(res);
-        
         Router.push("/auth/login/step-two");
       }
     } catch (err) {

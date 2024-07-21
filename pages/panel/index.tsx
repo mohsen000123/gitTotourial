@@ -6,7 +6,7 @@ import UserInfo from "@/app/components/panel/userInfo";
 const Panel: NextPageWithLayout = () => {
   return (
     <>
-      <h2>vhnauijvfcnbaiohndioka</h2>
+      <h2> User Panel </h2>
       <UserInfo />
     </>
   );
