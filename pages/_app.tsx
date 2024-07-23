@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
+import { ThemeProvider } from "@material-tailwind/react";
 
 export type NextPageWithLayout<p = {}, IP = p> = NextPage<p, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -18,6 +19,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>
+    <ThemeProvider>
+      <Provider store={store}>
+        {getLayout(<Component {...pageProps} />)}
+      </Provider>
+    </ThemeProvider>
   );
 }

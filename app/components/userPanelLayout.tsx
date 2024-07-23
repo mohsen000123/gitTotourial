@@ -20,7 +20,7 @@ const UserPanelLayout = ({ children }: Props) => {
     return <></>;
   }
 
-  return <div className="w-full text-2xl">{children}</div>;
+  return <div className="w-full text-2x1">{children}</div>;
 };
 
 export default UserPanelLayout;
