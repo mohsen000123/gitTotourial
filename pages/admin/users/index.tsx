@@ -1,9 +1,9 @@
 import AdminPanelLayout from "@/app/components/adminPanelLayout";
 
-import { NextPageWithLayout } from "../_app";
+import { NextPageWithLayout } from "../../_app";
 import { useEffect, useState } from "react";
 
-const AdminPanel: NextPageWithLayout = () => {
+const UsersList: NextPageWithLayout = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,12 +17,12 @@ const AdminPanel: NextPageWithLayout = () => {
   }
   return (
     <>
-      <h1>admin dashboard </h1>
+      <h1>user`s page </h1>
     </>
   );
 };
-AdminPanel.getLayout = (page) => (
+UsersList.getLayout = (page) => (
   <AdminPanelLayout >{page} </AdminPanelLayout>
 );
 
-export default AdminPanel;
+export default UsersList;
